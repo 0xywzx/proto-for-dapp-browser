@@ -6,6 +6,10 @@ const mnemonic = process.env.MNEMONIC
 const infuraKey = process.env.INFURA_API_KEY
 
 module.exports = {
+  rpc: {
+    host:"0.0.0.0",
+    port:8545
+  },
 
   networks: {
 
@@ -22,6 +26,13 @@ module.exports = {
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    },
+
+    local: {
+      provider: new HDWalletProvider(process.env.MNEMONIC, 'http://0.0.0.0:8545'),
+      network_id: "1515",
+      gas: 0,
+      gasPrice: 0
     },
 
   },
